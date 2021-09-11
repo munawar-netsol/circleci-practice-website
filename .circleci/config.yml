@@ -4,27 +4,22 @@ orbs:
 jobs:
     build-and-deploy:
         docker:
-            - image: amaysim/serverless
-              auth:
-                username: munawersheikh
-                password: $DOCKERHUB_PASSWORD
+            - image: circleci/node:16.8.0
         steps:
             - checkout
             - restore_cache:
                 keys:
                 - v1-deps-{{ checksum "package.json" }}
+            - run: npm install
             - save_cache:
                 key: v1-deps-{{ checksum "package.json" }}
                 paths:
-                - node_modules   
-                  /usr/local/lib/node_modules
-            - run: npm -v
-
+                - node_modules
+            - run: npm run test
 workflows:
     build-and-deploy:
         jobs:
             - build-and-deploy:
-                  context: serverlessDocker
                   filters:
                       branches:
                           only:
