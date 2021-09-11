@@ -7,10 +7,15 @@ jobs:
             - image: circleci/node:16.8.0
         steps:
             - checkout
-            - run:
-                command: npm install                   
-            - run:
-                command: npm run test
+            - restore_cache:
+                keys:
+                - v1-deps-{{ checksum "package-lock.json" }}
+            - run: npm install
+            - save_cache:
+                key: v1-deps-{{ checksum "package-lock.json" }}
+                paths:
+                - node_modules
+            - run: npm run test
 workflows:
     build-and-deploy:
         jobs:
