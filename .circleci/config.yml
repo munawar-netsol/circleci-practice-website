@@ -24,6 +24,7 @@ workflows:
     build-and-deploy:
         jobs:
             - build-and-deploy:
+                  context: serverlessDocker
                   filters:
                       branches:
                           only:
