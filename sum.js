@@ -1,4 +1,5 @@
-module.exports = sumFunc = (a,b) => 
+module.exports = sumFunc = (c,d) => 
 {
-    return a + b;
+    console.log('.');
+    return c + d;
 }
