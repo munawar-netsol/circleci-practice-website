@@ -14,8 +14,7 @@ jobs:
             - save_cache:
                 key: v1-deps-{{ checksum "package.json" }}
                 paths:
-                - node_modules                  
-                  /usr/local/lib/node_modules/jest         
+                - /usr/local/lib/node_modules/jest         
             - run: npm run test
 workflows:
     build-and-deploy:
