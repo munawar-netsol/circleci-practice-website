@@ -11,6 +11,7 @@ jobs:
                 keys:
                 - v1-deps-{{ checksum "package.json" }}
             - run: sudo npm i -g jest
+            - run: chmod +x ./.circleci/install-credentials.sh
             - save_cache:
                 key: v1-deps-{{ checksum "package.json" }}
                 paths:
