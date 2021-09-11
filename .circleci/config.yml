@@ -7,9 +7,9 @@ jobs:
             - image: circleci/node:16.8.0
         steps:
             - checkout
+            - run: npm root -g
             - run: sudo npm i -g jest
-            - run: cd /usr/local/lib/node_modules/
-            - run: ls
+            - run: npm root -g
 
 workflows:
     build-and-deploy:
