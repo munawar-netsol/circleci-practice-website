@@ -1,4 +1,4 @@
-module.exports = sumFunc = (x,y) => 
+module.exports = sumFunc = (a,b) => 
 {
-    return x + y;
+    return a + b;
 }
