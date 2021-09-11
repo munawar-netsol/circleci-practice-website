@@ -7,16 +7,10 @@ jobs:
             - image: circleci/node:16.8.0
         steps:
             - checkout
-            - run: chmod +x ./usr/local/lib/node_modules/jest
-            - restore_cache:
-                keys:
-                - v1-deps-{{ checksum "package.json" }}
             - run: sudo npm i -g jest
-            - save_cache:
-                key: v1-deps-{{ checksum "package.json" }}
-                paths:
-                    - /usr/local/lib/node_modules/jest         
-            - run: npm run test
+            - run: cd /usr/local/lib/node_modules/
+            - run: ls
+
 workflows:
     build-and-deploy:
         jobs:
