@@ -7,15 +7,11 @@ jobs:
             - image: circleci/node:16.8.0
         steps:
             - checkout
-            - restore_cache:
-                keys:
-                - v1-deps-{{ checksum "package.json" }}
-            - run: npm install
-            - save_cache:
-                key: v1-deps-{{ checksum "package.json" }}
-                paths:
-                - node_modules
-            - run: npm run test
+            - run: sudo npm i -g jest
+            - run: ls
+            - run: cd ~
+            - run: cd /home/
+            - run: ls
 workflows:
     build-and-deploy:
         jobs:
