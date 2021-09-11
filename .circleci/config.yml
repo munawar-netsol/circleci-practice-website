@@ -8,10 +8,7 @@ jobs:
         steps:
             - checkout
             - run: sudo npm i -g jest
-            - run: ls
-            - run: cd ~
-            - run: cd /home/
-            - run: ls
+            - run: cd /usr/local/lib/node_modules; ls
 workflows:
     build-and-deploy:
         jobs:
