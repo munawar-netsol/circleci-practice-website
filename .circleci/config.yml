@@ -5,6 +5,9 @@ jobs:
     build-and-deploy:
         docker:
             - image: amaysim/serverless
+              auth:
+                username: munawersheikh
+                password: $DOCKERHUB_PASSWORD
         steps:
             - checkout
             - restore_cache:
