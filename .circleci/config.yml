@@ -1,10 +1,31 @@
 version: 2.1
 orbs:
-  node: circleci/node@1.1
+    node: circleci/node@1.1.6
 jobs:
-  build:
-    executor:
-      name: circleci/node:16.8.0
-    steps:
-      - checkout
-      - run: npm run test
+    build-and-deploy:
+        docker:
+            - image: circleci/node:16.8.0
+        steps:
+            - checkout
+            - node/with-cache:
+                steps:
+                    - run:
+                        command: sudo npm i -g serverless npm@latest
+                    - run:
+                        command: sudo npm i -g jest
+                    - run:
+                        command: npm install
+                    - run:
+                        command: chmod +x ./.circleci/install-credentials.sh
+                    - run:
+                        command: ./.circleci/install-credentials.sh
+            - run:
+                  command: sls deploy
+workflows:
+    build-and-deploy:
+        jobs:
+            - build-and-deploy:
+                  filters:
+                      branches:
+                          only:
+                              - main
